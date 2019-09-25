@@ -24,7 +24,7 @@ namespace TaskWatch
             InitializeComponent();
             m_stopwatch = new Stopwatch();
             m_filePath = "TaskTimeRecord.csv";
-            m_encoding = System.Text.Encoding.GetEncoding("Shift_JIS");
+            m_encoding = System.Text.Encoding.GetEncoding("UTF-8");
 
             // タスク名コンボボックスのリスト初期化
             RenewTaskComboBoxList();
