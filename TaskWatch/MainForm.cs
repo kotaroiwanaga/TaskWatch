@@ -12,13 +12,14 @@ using System.IO;
 
 namespace TaskWatch
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
         private Stopwatch m_stopwatch;
         private string m_filePath;
         private System.Text.Encoding m_encoding; // CSVファイルに書き込むときに使うEncoding
+        private const string m_taskInfoDefaultText = "----"; // 新規タスクのタスク情報デフォルト表示テキスト
 
-        public Form1()
+        public MainForm()
         {
             // 各メンバ変数の初期化
             InitializeComponent();
@@ -26,94 +27,28 @@ namespace TaskWatch
             m_filePath = "TaskTimeRecord.csv";
             m_encoding = System.Text.Encoding.GetEncoding("UTF-8");
 
+            // メッセージラベルのサイズを親コンポーネントに合わせる
+            Message_Label.Width = Message_TableLayoutPanel.Width;
+            Message_Label.Height = Message_TableLayoutPanel.Height;
+
+            // メッセージリセット
+            ResetMessage();
+
             // タスク名コンボボックスのリスト初期化
             RenewTaskComboBoxList();
+
+            // タスク情報表示の初期化
+            DisplayDefaultTaskInfo();
 
             // タイマースタート
             TaskTimer.Start();
         }
 
-        // タスク名コンボボックスのリストの更新
-        private void RenewTaskComboBoxList()
-        {
-            if(!File.Exists(m_filePath))
-            {
-                return;
-            }
-
-            using (StreamReader streamReader = new StreamReader(m_filePath))
-            {
-                Task_ComboBox.Items.Clear();
-
-                // 一行ずつ読み込む
-                while (streamReader.Peek() > -1)
-                {
-                    string line = streamReader.ReadLine();
-                    string[] values = line.Split(',');
-
-                    Task_ComboBox.Items.Add(values[0]);
-                }
-            }
-        }
-
-        // タスク情報の読み込み
-        private void LoadTaskInfo()
-        {
-            if(!File.Exists(m_filePath))
-            {
-                return;
-            }
-
-            using (StreamReader streamReader = new StreamReader(m_filePath))
-            {
-                // 一行ずつ読み込む
-                while (streamReader.Peek() > -1)
-                {
-                    string line = streamReader.ReadLine();
-                    string[] values = line.Split(',');
-
-                    if (values[0] == Task_ComboBox.Text)
-                    {
-                        // valuesをリストに変換
-                        List<string> tmp_valueList = new List<string>(values);
-
-                        // valuesの先頭(i=0)はタスク名なので取り除く
-                        tmp_valueList.RemoveAt(0);
-
-                        // リストをstring→doubleに変換
-                        List<TimeSpan> timeList = 
-                            tmp_valueList.ConvertAll<TimeSpan>((string value) => 
-                            {
-                                // ※doubleに変換できると仮定してます
-                                return TimeSpan.Parse(value);
-                            }
-                            );
-
-                        // タスク情報を取得
-                        TimesValue_Label.Text = timeList.Count().ToString();
-                        AverageValue_Label.Text = CalcTimeSpanAverage(timeList).ToString();
-                        MaxValue_Label.Text = timeList.Max().ToString();
-                        MinValue_Label.Text = timeList.Min().ToString();
-
-                        // 終わったら終了
-                        return;
-                    }
-                }
-            }
-        }
-
-        // TimeSpanのリストの平均値を出力
-        private TimeSpan CalcTimeSpanAverage(List<TimeSpan> times)
-        {
-            // 合計値の計算
-            TimeSpan total = new TimeSpan(0);
-            times.ForEach(time => total = total.Add(time));
-
-            return new TimeSpan(total.Ticks / times.Count());
-        }
 
         private void StartStop_Button_Click(object sender, EventArgs e)
         {
+            ResetMessage();
+
             // ストップウォッチ起動中
             if (m_stopwatch.IsRunning)
             {
@@ -133,12 +68,16 @@ namespace TaskWatch
 
         private void Reset_Button_Click(object sender, EventArgs e)
         {
+            ResetMessage();
             m_stopwatch.Stop();
             m_stopwatch.Reset();
         }
 
         private void Save_Button_Click(object sender, EventArgs e)
         {
+            // メッセージリセット
+            ResetMessage();
+
             if(Task_ComboBox.Text != "")
             {
                 m_stopwatch.Stop();
@@ -162,11 +101,11 @@ namespace TaskWatch
                 string targetLine = ""; // 書き込む値のリスト
 
                 // ストップウォッチが0でないとき
-                if(m_stopwatch.Elapsed != TimeSpan.Zero)
+                if (m_stopwatch.Elapsed != TimeSpan.Zero)
                 {
                     // CSVファイル読み込み
                     using (StreamReader streamReader = new System.IO.StreamReader(m_filePath))
-                    { 
+                    {
                         // 一次ファイルを開く
                         using (StreamWriter streamWriter = new System.IO.StreamWriter(tmp_filePath, false, m_encoding))
                         {
@@ -202,7 +141,7 @@ namespace TaskWatch
                             }
 
                             // 残りの行を一時ファイルに書き込む
-                            while(streamReader.Peek() > -1)
+                            while (streamReader.Peek() > -1)
                             {
                                 string line = streamReader.ReadLine();
                                 streamWriter.WriteLine(line);
@@ -217,7 +156,7 @@ namespace TaskWatch
 
                     File.Copy(tmp_filePath, m_filePath, true);
                     File.Delete(tmp_filePath);
-                      
+
                     // 保存できたらストップウォッチをリセット
                     m_stopwatch.Reset();
 
@@ -229,17 +168,20 @@ namespace TaskWatch
                 }
                 else
                 {
-                    // TODO: ストップウォッチの値が0の時は保存しない
+                    // TODO: ストップウォッチの値が0の時は保存しないことをメッセージ表示する
+                    ShowMessage("タスク時間未計測です", Color.Red);
                 }
             }
             else
             {
-                // TODO: タスク名に問題があるとポップアップ表示する
+                    // タスク名に問題があるとメッセージ表示する
+                    ShowMessage("タスク名を入力してください", Color.Red);
             }
         }
 
         private void Task_ComboBox_TextChanged(object sender, EventArgs e)
         {
+            ResetMessage();
             LoadTaskInfo();
         }
     }

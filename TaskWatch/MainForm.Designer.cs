@@ -1,6 +1,6 @@
 ﻿namespace TaskWatch
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         /// 必要なデザイナー変数です。
@@ -31,25 +31,28 @@
             this.components = new System.ComponentModel.Container();
             this.TaskTimer = new System.Windows.Forms.Timer(this.components);
             this.TaskInfo_Panel = new System.Windows.Forms.Panel();
-            this.Times_Label = new System.Windows.Forms.Label();
-            this.TimesValue_Label = new System.Windows.Forms.Label();
-            this.Average_Panel = new System.Windows.Forms.Label();
-            this.Max_Label = new System.Windows.Forms.Label();
-            this.Min_Label = new System.Windows.Forms.Label();
-            this.AverageValue_Label = new System.Windows.Forms.Label();
-            this.MaxValue_Label = new System.Windows.Forms.Label();
             this.MinValue_Label = new System.Windows.Forms.Label();
+            this.MaxValue_Label = new System.Windows.Forms.Label();
+            this.AverageValue_Label = new System.Windows.Forms.Label();
+            this.Min_Label = new System.Windows.Forms.Label();
+            this.Max_Label = new System.Windows.Forms.Label();
+            this.Average_Panel = new System.Windows.Forms.Label();
+            this.TimesValue_Label = new System.Windows.Forms.Label();
+            this.Times_Label = new System.Windows.Forms.Label();
             this.Setting_Panel = new System.Windows.Forms.Panel();
-            this.Task_ComboBox = new System.Windows.Forms.ComboBox();
-            this.Save_Button = new System.Windows.Forms.Button();
             this.Task_Label = new System.Windows.Forms.Label();
+            this.Save_Button = new System.Windows.Forms.Button();
+            this.Task_ComboBox = new System.Windows.Forms.ComboBox();
             this.StopWatch_Panel = new System.Windows.Forms.Panel();
-            this.Time_Label = new System.Windows.Forms.Label();
-            this.StartStop_Button = new System.Windows.Forms.Button();
             this.Reset_Button = new System.Windows.Forms.Button();
+            this.StartStop_Button = new System.Windows.Forms.Button();
+            this.Time_Label = new System.Windows.Forms.Label();
+            this.Message_TableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.Message_Label = new System.Windows.Forms.Label();
             this.TaskInfo_Panel.SuspendLayout();
             this.Setting_Panel.SuspendLayout();
             this.StopWatch_Panel.SuspendLayout();
+            this.Message_TableLayoutPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // TaskTimer
@@ -71,59 +74,14 @@
             this.TaskInfo_Panel.Size = new System.Drawing.Size(317, 178);
             this.TaskInfo_Panel.TabIndex = 8;
             // 
-            // Times_Label
+            // MinValue_Label
             // 
-            this.Times_Label.AutoSize = true;
-            this.Times_Label.Location = new System.Drawing.Point(29, 30);
-            this.Times_Label.Name = "Times_Label";
-            this.Times_Label.Size = new System.Drawing.Size(45, 15);
-            this.Times_Label.TabIndex = 0;
-            this.Times_Label.Text = "Times";
-            // 
-            // TimesValue_Label
-            // 
-            this.TimesValue_Label.AutoSize = true;
-            this.TimesValue_Label.Location = new System.Drawing.Point(115, 30);
-            this.TimesValue_Label.Name = "TimesValue_Label";
-            this.TimesValue_Label.Size = new System.Drawing.Size(39, 15);
-            this.TimesValue_Label.TabIndex = 1;
-            this.TimesValue_Label.Text = "----";
-            // 
-            // Average_Panel
-            // 
-            this.Average_Panel.AutoSize = true;
-            this.Average_Panel.Location = new System.Drawing.Point(29, 68);
-            this.Average_Panel.Name = "Average_Panel";
-            this.Average_Panel.Size = new System.Drawing.Size(58, 15);
-            this.Average_Panel.TabIndex = 2;
-            this.Average_Panel.Text = "Average";
-            // 
-            // Max_Label
-            // 
-            this.Max_Label.AutoSize = true;
-            this.Max_Label.Location = new System.Drawing.Point(29, 107);
-            this.Max_Label.Name = "Max_Label";
-            this.Max_Label.Size = new System.Drawing.Size(32, 15);
-            this.Max_Label.TabIndex = 3;
-            this.Max_Label.Text = "Max";
-            // 
-            // Min_Label
-            // 
-            this.Min_Label.AutoSize = true;
-            this.Min_Label.Location = new System.Drawing.Point(29, 141);
-            this.Min_Label.Name = "Min_Label";
-            this.Min_Label.Size = new System.Drawing.Size(29, 15);
-            this.Min_Label.TabIndex = 4;
-            this.Min_Label.Text = "Min";
-            // 
-            // AverageValue_Label
-            // 
-            this.AverageValue_Label.AutoSize = true;
-            this.AverageValue_Label.Location = new System.Drawing.Point(115, 68);
-            this.AverageValue_Label.Name = "AverageValue_Label";
-            this.AverageValue_Label.Size = new System.Drawing.Size(39, 15);
-            this.AverageValue_Label.TabIndex = 5;
-            this.AverageValue_Label.Text = "----";
+            this.MinValue_Label.AutoSize = true;
+            this.MinValue_Label.Location = new System.Drawing.Point(115, 141);
+            this.MinValue_Label.Name = "MinValue_Label";
+            this.MinValue_Label.Size = new System.Drawing.Size(39, 15);
+            this.MinValue_Label.TabIndex = 7;
+            this.MinValue_Label.Text = "----";
             // 
             // MaxValue_Label
             // 
@@ -134,14 +92,59 @@
             this.MaxValue_Label.TabIndex = 6;
             this.MaxValue_Label.Text = "----";
             // 
-            // MinValue_Label
+            // AverageValue_Label
             // 
-            this.MinValue_Label.AutoSize = true;
-            this.MinValue_Label.Location = new System.Drawing.Point(115, 141);
-            this.MinValue_Label.Name = "MinValue_Label";
-            this.MinValue_Label.Size = new System.Drawing.Size(39, 15);
-            this.MinValue_Label.TabIndex = 7;
-            this.MinValue_Label.Text = "----";
+            this.AverageValue_Label.AutoSize = true;
+            this.AverageValue_Label.Location = new System.Drawing.Point(115, 68);
+            this.AverageValue_Label.Name = "AverageValue_Label";
+            this.AverageValue_Label.Size = new System.Drawing.Size(39, 15);
+            this.AverageValue_Label.TabIndex = 5;
+            this.AverageValue_Label.Text = "----";
+            // 
+            // Min_Label
+            // 
+            this.Min_Label.AutoSize = true;
+            this.Min_Label.Location = new System.Drawing.Point(29, 141);
+            this.Min_Label.Name = "Min_Label";
+            this.Min_Label.Size = new System.Drawing.Size(29, 15);
+            this.Min_Label.TabIndex = 4;
+            this.Min_Label.Text = "Min";
+            // 
+            // Max_Label
+            // 
+            this.Max_Label.AutoSize = true;
+            this.Max_Label.Location = new System.Drawing.Point(29, 107);
+            this.Max_Label.Name = "Max_Label";
+            this.Max_Label.Size = new System.Drawing.Size(32, 15);
+            this.Max_Label.TabIndex = 3;
+            this.Max_Label.Text = "Max";
+            // 
+            // Average_Panel
+            // 
+            this.Average_Panel.AutoSize = true;
+            this.Average_Panel.Location = new System.Drawing.Point(29, 68);
+            this.Average_Panel.Name = "Average_Panel";
+            this.Average_Panel.Size = new System.Drawing.Size(58, 15);
+            this.Average_Panel.TabIndex = 2;
+            this.Average_Panel.Text = "Average";
+            // 
+            // TimesValue_Label
+            // 
+            this.TimesValue_Label.AutoSize = true;
+            this.TimesValue_Label.Location = new System.Drawing.Point(115, 30);
+            this.TimesValue_Label.Name = "TimesValue_Label";
+            this.TimesValue_Label.Size = new System.Drawing.Size(39, 15);
+            this.TimesValue_Label.TabIndex = 1;
+            this.TimesValue_Label.Text = "----";
+            // 
+            // Times_Label
+            // 
+            this.Times_Label.AutoSize = true;
+            this.Times_Label.Location = new System.Drawing.Point(29, 30);
+            this.Times_Label.Name = "Times_Label";
+            this.Times_Label.Size = new System.Drawing.Size(45, 15);
+            this.Times_Label.TabIndex = 0;
+            this.Times_Label.Text = "Times";
             // 
             // Setting_Panel
             // 
@@ -153,14 +156,14 @@
             this.Setting_Panel.Size = new System.Drawing.Size(317, 177);
             this.Setting_Panel.TabIndex = 9;
             // 
-            // Task_ComboBox
+            // Task_Label
             // 
-            this.Task_ComboBox.FormattingEnabled = true;
-            this.Task_ComboBox.Location = new System.Drawing.Point(32, 38);
-            this.Task_ComboBox.Name = "Task_ComboBox";
-            this.Task_ComboBox.Size = new System.Drawing.Size(233, 23);
-            this.Task_ComboBox.TabIndex = 2;
-            this.Task_ComboBox.TextChanged += new System.EventHandler(this.Task_ComboBox_TextChanged);
+            this.Task_Label.AutoSize = true;
+            this.Task_Label.Location = new System.Drawing.Point(21, 10);
+            this.Task_Label.Name = "Task_Label";
+            this.Task_Label.Size = new System.Drawing.Size(37, 15);
+            this.Task_Label.TabIndex = 9;
+            this.Task_Label.Text = "Task";
             // 
             // Save_Button
             // 
@@ -172,14 +175,14 @@
             this.Save_Button.UseVisualStyleBackColor = true;
             this.Save_Button.Click += new System.EventHandler(this.Save_Button_Click);
             // 
-            // Task_Label
+            // Task_ComboBox
             // 
-            this.Task_Label.AutoSize = true;
-            this.Task_Label.Location = new System.Drawing.Point(21, 10);
-            this.Task_Label.Name = "Task_Label";
-            this.Task_Label.Size = new System.Drawing.Size(37, 15);
-            this.Task_Label.TabIndex = 9;
-            this.Task_Label.Text = "Task";
+            this.Task_ComboBox.FormattingEnabled = true;
+            this.Task_ComboBox.Location = new System.Drawing.Point(32, 38);
+            this.Task_ComboBox.Name = "Task_ComboBox";
+            this.Task_ComboBox.Size = new System.Drawing.Size(233, 23);
+            this.Task_ComboBox.TabIndex = 2;
+            this.Task_ComboBox.TextChanged += new System.EventHandler(this.Task_ComboBox_TextChanged);
             // 
             // StopWatch_Panel
             // 
@@ -191,15 +194,15 @@
             this.StopWatch_Panel.Size = new System.Drawing.Size(351, 177);
             this.StopWatch_Panel.TabIndex = 10;
             // 
-            // Time_Label
+            // Reset_Button
             // 
-            this.Time_Label.AutoSize = true;
-            this.Time_Label.Font = new System.Drawing.Font("MS UI Gothic", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.Time_Label.Location = new System.Drawing.Point(39, 38);
-            this.Time_Label.Name = "Time_Label";
-            this.Time_Label.Size = new System.Drawing.Size(139, 34);
-            this.Time_Label.TabIndex = 6;
-            this.Time_Label.Text = "00:00:00";
+            this.Reset_Button.Location = new System.Drawing.Point(185, 103);
+            this.Reset_Button.Name = "Reset_Button";
+            this.Reset_Button.Size = new System.Drawing.Size(75, 23);
+            this.Reset_Button.TabIndex = 9;
+            this.Reset_Button.Text = "Reset";
+            this.Reset_Button.UseVisualStyleBackColor = true;
+            this.Reset_Button.Click += new System.EventHandler(this.Reset_Button_Click);
             // 
             // StartStop_Button
             // 
@@ -211,17 +214,38 @@
             this.StartStop_Button.UseVisualStyleBackColor = true;
             this.StartStop_Button.Click += new System.EventHandler(this.StartStop_Button_Click);
             // 
-            // Reset_Button
+            // Time_Label
             // 
-            this.Reset_Button.Location = new System.Drawing.Point(185, 103);
-            this.Reset_Button.Name = "Reset_Button";
-            this.Reset_Button.Size = new System.Drawing.Size(75, 23);
-            this.Reset_Button.TabIndex = 9;
-            this.Reset_Button.Text = "Reset";
-            this.Reset_Button.UseVisualStyleBackColor = true;
-            this.Reset_Button.Click += new System.EventHandler(this.Reset_Button_Click);
+            this.Time_Label.AutoSize = true;
+            this.Time_Label.Font = new System.Drawing.Font("MS UI Gothic", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.Time_Label.Location = new System.Drawing.Point(39, 38);
+            this.Time_Label.Name = "Time_Label";
+            this.Time_Label.Size = new System.Drawing.Size(139, 33);
+            this.Time_Label.TabIndex = 6;
+            this.Time_Label.Text = "00:00:00";
             // 
-            // Form1
+            // Message_TableLayoutPanel
+            // 
+            this.Message_TableLayoutPanel.ColumnCount = 1;
+            this.Message_TableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.Message_TableLayoutPanel.Controls.Add(this.Message_Label, 0, 0);
+            this.Message_TableLayoutPanel.Location = new System.Drawing.Point(402, 235);
+            this.Message_TableLayoutPanel.Name = "Message_TableLayoutPanel";
+            this.Message_TableLayoutPanel.RowCount = 1;
+            this.Message_TableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.Message_TableLayoutPanel.Size = new System.Drawing.Size(351, 178);
+            this.Message_TableLayoutPanel.TabIndex = 12;
+            // 
+            // Message_Label
+            // 
+            this.Message_Label.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.Message_Label.Location = new System.Drawing.Point(3, 0);
+            this.Message_Label.Name = "Message_Label";
+            this.Message_Label.Size = new System.Drawing.Size(329, 139);
+            this.Message_Label.TabIndex = 2;
+            this.Message_Label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -229,14 +253,16 @@
             this.Controls.Add(this.StopWatch_Panel);
             this.Controls.Add(this.Setting_Panel);
             this.Controls.Add(this.TaskInfo_Panel);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Controls.Add(this.Message_TableLayoutPanel);
+            this.Name = "MainForm";
+            this.Text = "TaskWatch";
             this.TaskInfo_Panel.ResumeLayout(false);
             this.TaskInfo_Panel.PerformLayout();
             this.Setting_Panel.ResumeLayout(false);
             this.Setting_Panel.PerformLayout();
             this.StopWatch_Panel.ResumeLayout(false);
             this.StopWatch_Panel.PerformLayout();
+            this.Message_TableLayoutPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -260,6 +286,8 @@
         private System.Windows.Forms.Button Reset_Button;
         private System.Windows.Forms.Button StartStop_Button;
         private System.Windows.Forms.Label Time_Label;
+        private System.Windows.Forms.TableLayoutPanel Message_TableLayoutPanel;
+        private System.Windows.Forms.Label Message_Label;
     }
 }
 
