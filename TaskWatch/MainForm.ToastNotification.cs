@@ -49,6 +49,7 @@ namespace TaskWatch
                             int minitStopping = int.Parse(stoppingConfig.Element("Minit").Value);
 
                             m_noticeTimeSpanRunning = new TimeSpan(hourRunning, minitRunning, 0);
+                            m_nextNoticeTimeSpanRunning = new TimeSpan(hourRunning, minitRunning, 0);
                             m_noticeTimeSpanStopping = new TimeSpan(hourStopping, minitStopping, 0);
                         }
                     }
@@ -57,6 +58,7 @@ namespace TaskWatch
                 {
                     m_toastNotificationSwitch = false;
                     m_noticeTimeSpanRunning = new TimeSpan(0, 10, 0);
+                    m_nextNoticeTimeSpanRunning = new TimeSpan(0, 10, 0);
                     m_noticeTimeSpanStopping = new TimeSpan(0, 10, 0);
                     ShowMessage("設定ファイルの読み込みに失敗しました", Color.Red);
                 }
