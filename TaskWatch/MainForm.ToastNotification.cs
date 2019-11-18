@@ -59,8 +59,7 @@ namespace TaskWatch
                     m_noticeTimeSpanRunning = new TimeSpan(0, 10, 0);
                     m_noticeTimeSpanStopping = new TimeSpan(0, 10, 0);
                     ShowMessage("設定ファイルの読み込みに失敗しました", Color.Red);
-                }
-                
+                }           
             }
         }
 
