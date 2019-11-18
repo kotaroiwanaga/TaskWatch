@@ -72,7 +72,8 @@ namespace TaskWatch
                             timeList.Count().ToString(),              // 回数
                             CalcTimeSpanAverage(timeList).ToString(), // 平均値
                             timeList.Max().ToString(),                // 最大値
-                            timeList.Min().ToString()                 // 最小値
+                            timeList.Min().ToString(),                // 最小値
+                            CalcTotalTimeSpan(timeList).ToString()    // 合計値
                             );
 
                         // 終わったら終了
@@ -88,26 +89,35 @@ namespace TaskWatch
         // タスク情報表示をデフォルトにする
         private void DisplayDefaultTaskInfo()
         {
-            RenewTaskInfoDisplay(m_taskInfoDefaultText, m_taskInfoDefaultText, m_taskInfoDefaultText, m_taskInfoDefaultText);
+            RenewTaskInfoDisplay(m_taskInfoDefaultText, m_taskInfoDefaultText, m_taskInfoDefaultText, m_taskInfoDefaultText, m_taskInfoDefaultText);
         }
 
         // タスク情報の更新
-        private void RenewTaskInfoDisplay(string timesText, string averageText, string maxText, string minText)
+        private void RenewTaskInfoDisplay(string timesText, string averageText, string maxText, string minText, string totalText)
         {
             TimesValue_Label.Text = timesText;
             AverageValue_Label.Text = averageText;
             MaxValue_Label.Text = maxText;
             MinValue_Label.Text = minText;
+            TotalValue_Label.Text = totalText;
         }
 
         // TimeSpanのリストの平均値を出力
         private TimeSpan CalcTimeSpanAverage(List<TimeSpan> times)
         {
             // 合計値の計算
+            TimeSpan total = CalcTotalTimeSpan(times);
+
+            return new TimeSpan(total.Ticks / times.Count());
+        }
+
+        // TimeSpanのリストの合計値を出力
+        private TimeSpan CalcTotalTimeSpan(List<TimeSpan> times)
+        {
             TimeSpan total = new TimeSpan(0);
             times.ForEach(time => total = total.Add(time));
 
-            return new TimeSpan(total.Ticks / times.Count());
+            return total;
         }
 
         // メッセージ表示

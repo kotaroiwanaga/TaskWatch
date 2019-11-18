@@ -49,6 +49,8 @@
             this.Time_Label = new System.Windows.Forms.Label();
             this.Message_TableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.Message_Label = new System.Windows.Forms.Label();
+            this.Total_Label = new System.Windows.Forms.Label();
+            this.TotalValue_Label = new System.Windows.Forms.Label();
             this.TaskInfo_Panel.SuspendLayout();
             this.Setting_Panel.SuspendLayout();
             this.StopWatch_Panel.SuspendLayout();
@@ -61,6 +63,8 @@
             // 
             // TaskInfo_Panel
             // 
+            this.TaskInfo_Panel.Controls.Add(this.TotalValue_Label);
+            this.TaskInfo_Panel.Controls.Add(this.Total_Label);
             this.TaskInfo_Panel.Controls.Add(this.MinValue_Label);
             this.TaskInfo_Panel.Controls.Add(this.MaxValue_Label);
             this.TaskInfo_Panel.Controls.Add(this.AverageValue_Label);
@@ -77,7 +81,7 @@
             // MinValue_Label
             // 
             this.MinValue_Label.AutoSize = true;
-            this.MinValue_Label.Location = new System.Drawing.Point(115, 141);
+            this.MinValue_Label.Location = new System.Drawing.Point(115, 112);
             this.MinValue_Label.Name = "MinValue_Label";
             this.MinValue_Label.Size = new System.Drawing.Size(39, 15);
             this.MinValue_Label.TabIndex = 7;
@@ -86,7 +90,7 @@
             // MaxValue_Label
             // 
             this.MaxValue_Label.AutoSize = true;
-            this.MaxValue_Label.Location = new System.Drawing.Point(115, 107);
+            this.MaxValue_Label.Location = new System.Drawing.Point(115, 75);
             this.MaxValue_Label.Name = "MaxValue_Label";
             this.MaxValue_Label.Size = new System.Drawing.Size(39, 15);
             this.MaxValue_Label.TabIndex = 6;
@@ -95,7 +99,7 @@
             // AverageValue_Label
             // 
             this.AverageValue_Label.AutoSize = true;
-            this.AverageValue_Label.Location = new System.Drawing.Point(115, 68);
+            this.AverageValue_Label.Location = new System.Drawing.Point(115, 40);
             this.AverageValue_Label.Name = "AverageValue_Label";
             this.AverageValue_Label.Size = new System.Drawing.Size(39, 15);
             this.AverageValue_Label.TabIndex = 5;
@@ -104,7 +108,7 @@
             // Min_Label
             // 
             this.Min_Label.AutoSize = true;
-            this.Min_Label.Location = new System.Drawing.Point(29, 141);
+            this.Min_Label.Location = new System.Drawing.Point(29, 112);
             this.Min_Label.Name = "Min_Label";
             this.Min_Label.Size = new System.Drawing.Size(29, 15);
             this.Min_Label.TabIndex = 4;
@@ -113,7 +117,7 @@
             // Max_Label
             // 
             this.Max_Label.AutoSize = true;
-            this.Max_Label.Location = new System.Drawing.Point(29, 107);
+            this.Max_Label.Location = new System.Drawing.Point(29, 75);
             this.Max_Label.Name = "Max_Label";
             this.Max_Label.Size = new System.Drawing.Size(32, 15);
             this.Max_Label.TabIndex = 3;
@@ -122,7 +126,7 @@
             // Average_Panel
             // 
             this.Average_Panel.AutoSize = true;
-            this.Average_Panel.Location = new System.Drawing.Point(29, 68);
+            this.Average_Panel.Location = new System.Drawing.Point(29, 40);
             this.Average_Panel.Name = "Average_Panel";
             this.Average_Panel.Size = new System.Drawing.Size(58, 15);
             this.Average_Panel.TabIndex = 2;
@@ -131,7 +135,7 @@
             // TimesValue_Label
             // 
             this.TimesValue_Label.AutoSize = true;
-            this.TimesValue_Label.Location = new System.Drawing.Point(115, 30);
+            this.TimesValue_Label.Location = new System.Drawing.Point(115, 11);
             this.TimesValue_Label.Name = "TimesValue_Label";
             this.TimesValue_Label.Size = new System.Drawing.Size(39, 15);
             this.TimesValue_Label.TabIndex = 1;
@@ -140,7 +144,7 @@
             // Times_Label
             // 
             this.Times_Label.AutoSize = true;
-            this.Times_Label.Location = new System.Drawing.Point(29, 30);
+            this.Times_Label.Location = new System.Drawing.Point(29, 11);
             this.Times_Label.Name = "Times_Label";
             this.Times_Label.Size = new System.Drawing.Size(45, 15);
             this.Times_Label.TabIndex = 0;
@@ -245,6 +249,24 @@
             this.Message_Label.TabIndex = 2;
             this.Message_Label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // Total_Label
+            // 
+            this.Total_Label.AutoSize = true;
+            this.Total_Label.Location = new System.Drawing.Point(29, 147);
+            this.Total_Label.Name = "Total_Label";
+            this.Total_Label.Size = new System.Drawing.Size(39, 15);
+            this.Total_Label.TabIndex = 8;
+            this.Total_Label.Text = "Total";
+            // 
+            // TotalValue_Label
+            // 
+            this.TotalValue_Label.AutoSize = true;
+            this.TotalValue_Label.Location = new System.Drawing.Point(115, 147);
+            this.TotalValue_Label.Name = "TotalValue_Label";
+            this.TotalValue_Label.Size = new System.Drawing.Size(39, 15);
+            this.TotalValue_Label.TabIndex = 9;
+            this.TotalValue_Label.Text = "----";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -288,6 +310,8 @@
         private System.Windows.Forms.Label Time_Label;
         private System.Windows.Forms.TableLayoutPanel Message_TableLayoutPanel;
         private System.Windows.Forms.Label Message_Label;
+        private System.Windows.Forms.Label TotalValue_Label;
+        private System.Windows.Forms.Label Total_Label;
     }
 }
 
