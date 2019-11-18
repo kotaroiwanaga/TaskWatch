@@ -18,6 +18,10 @@ namespace TaskWatch
         private string m_filePath;
         private System.Text.Encoding m_encoding; // CSVファイルに書き込むときに使うEncoding
         private const string m_taskInfoDefaultText = "----"; // 新規タスクのタスク情報デフォルト表示テキスト
+        private TimeSpan m_noticeTimeSpanRunning; // 通知間隔時間(ストップウォッチ起動時)
+        private TimeSpan m_noticeTimeSpanStopping; // 通知間隔時間(ストップウォッチ停止時)
+        private TimeSpan m_nextNoticeTimeSpanRunning; // 前回ストップウォッチ経過通知時間
+        private DateTime m_prevNoticeTimeStopping; // 直前のストップウォッチ停止中通知時間
 
         public MainForm()
         {
@@ -26,6 +30,10 @@ namespace TaskWatch
             m_stopwatch = new Stopwatch();
             m_filePath = "TaskTimeRecord.csv";
             m_encoding = System.Text.Encoding.GetEncoding("UTF-8");
+            m_noticeTimeSpanRunning = new TimeSpan(0, 10, 0);
+            m_noticeTimeSpanStopping = new TimeSpan(0, 10, 0);
+            m_nextNoticeTimeSpanRunning = TimeSpan.Zero.Add(m_noticeTimeSpanRunning);
+            m_prevNoticeTimeStopping = DateTime.Now;
 
             // メッセージラベルのサイズを親コンポーネントに合わせる
             Message_Label.Width = Message_TableLayoutPanel.Width;
@@ -40,6 +48,9 @@ namespace TaskWatch
             // タスク情報表示の初期化
             DisplayDefaultTaskInfo();
 
+            // トースト通知機能設定の初期化
+            InitialSettingToastNotification();
+
             // タイマースタート
             TaskTimer.Start();
         }
@@ -48,6 +59,9 @@ namespace TaskWatch
         private void StartStop_Button_Click(object sender, EventArgs e)
         {
             ResetMessage();
+
+            // 停止中通知時間リセット
+            m_prevNoticeTimeStopping = DateTime.Now;
 
             // ストップウォッチ起動中
             if (m_stopwatch.IsRunning)
@@ -64,6 +78,37 @@ namespace TaskWatch
         private void TaskTimer_Tick(object sender, EventArgs e)
         {
             Time_Label.Text = m_stopwatch.Elapsed.ToString();
+            
+
+            // ストップウォッチ起動中
+            if (m_stopwatch.IsRunning)
+            {
+                // 計測時間が一定時間経過
+                if (m_stopwatch.Elapsed > m_nextNoticeTimeSpanRunning)
+                {
+                    // トースト通知の表示
+                    NoticeElapsedTime(m_nextNoticeTimeSpanRunning);
+
+                    // 次の通知時間セット
+                    m_nextNoticeTimeSpanRunning = m_nextNoticeTimeSpanRunning.Add(m_noticeTimeSpanRunning);
+                }
+            }
+            // ストップウォッチ停止中
+            else
+            {
+                TimeSpan elapsedTimeSpan = DateTime.Now - m_prevNoticeTimeStopping;
+
+                // 前回の通知から一定時間経過
+                if (elapsedTimeSpan > m_noticeTimeSpanStopping)
+                {
+                    // トースト通知の表示
+                    NoticeStopWatchStopping();
+
+                    // 通知時間リセット
+                    m_prevNoticeTimeStopping = DateTime.Now;
+                }
+            }
+
         }
 
         private void Reset_Button_Click(object sender, EventArgs e)
@@ -71,6 +116,12 @@ namespace TaskWatch
             ResetMessage();
             m_stopwatch.Stop();
             m_stopwatch.Reset();
+
+            // 起動中経過時間リセット
+            m_nextNoticeTimeSpanRunning = TimeSpan.Zero.Add(m_noticeTimeSpanRunning);
+
+            // 停止中経過時間リセット
+            m_prevNoticeTimeStopping = DateTime.Now;
         }
 
         private void Save_Button_Click(object sender, EventArgs e)
@@ -124,7 +175,6 @@ namespace TaskWatch
                                 streamWriter.WriteLine(line);
                             }
 
-                            // 対象の行にタスクの時間を追記する
 
                             // 新規タスク
                             if (targetLine == "")
@@ -165,10 +215,16 @@ namespace TaskWatch
 
                     // タスク名リストの更新
                     RenewTaskComboBoxList();
+
+                    // 起動中経過時間リセット
+                    m_nextNoticeTimeSpanRunning = TimeSpan.Zero.Add(m_noticeTimeSpanRunning);
+
+                    // 停止中経過時間リセット
+                    m_prevNoticeTimeStopping = DateTime.Now;
                 }
                 else
                 {
-                    // TODO: ストップウォッチの値が0の時は保存しないことをメッセージ表示する
+                    // ストップウォッチの値が0の時は保存しないことをメッセージ表示する
                     ShowMessage("タスク時間未計測です", Color.Red);
                 }
             }
