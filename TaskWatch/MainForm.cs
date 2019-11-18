@@ -22,6 +22,7 @@ namespace TaskWatch
         private TimeSpan m_noticeTimeSpanStopping; // 通知間隔時間(ストップウォッチ停止時)
         private TimeSpan m_nextNoticeTimeSpanRunning; // 前回ストップウォッチ経過通知時間
         private DateTime m_prevNoticeTimeStopping; // 直前のストップウォッチ停止中通知時間
+        private bool m_toastNotificationSwitch = false;
 
         public MainForm()
         {
