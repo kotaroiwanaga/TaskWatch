@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<Config>
+  <ToastNotification>
+    <ON>true</ON>
+    <RunningElapseTimeSpan>
+      <Hour>0</Hour>
+      <Minit>1</Minit>
+    </RunningElapseTimeSpan>
+    <StoppingElapseTimeSpan>
+      <Hour>0</Hour>
+      <Minit>1</Minit>
+    </StoppingElapseTimeSpan>
+  </ToastNotification>
+</Config>
