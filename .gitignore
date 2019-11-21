@@ -1,0 +1,10 @@
+﻿################################################################################
+# この .gitignore ファイルは Microsoft(R) Visual Studio によって自動的に作成されました。
+################################################################################
+
+/TaskWatch/obj
+/TaskWatch/bin
+/TaskWatch/MainForm.ToastNotification.cs.BASE.cs
+/TaskWatch/MainForm.ToastNotification.cs.LOCAL.cs
+/TaskWatch/MainForm.ToastNotification.cs.REMOTE.cs
+/.vs/TaskWatch/v15
