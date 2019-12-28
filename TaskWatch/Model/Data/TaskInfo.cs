@@ -6,18 +6,39 @@ using System.Threading.Tasks;
 
 namespace TaskWatch.Model.Data
 {
-    public struct TaskInfo
+    public class TaskInfo
     {
 
     // フィールド
         public string name;
-        public string comment;
+        public string description;
+        public List<TimeRecord> timeRecords;
 
     // パブリックメソッド
-        public TaskInfo(string name, string comment)
+        public TaskInfo(string name)
         {
             this.name = name;
-            this.comment = comment;
+            this.description = "";
+            this.timeRecords = new List<TimeRecord>();
+        }
+
+        public TaskInfo(string name, string description)
+        {
+            this.name = name;
+            this.description = description;
+            this.timeRecords = new List<TimeRecord>();
+        }
+
+        public TaskInfo(TaskInfoData taskInfoData)
+        {
+            this.name = taskInfoData.name;
+            this.description = taskInfoData.description;
+            this.timeRecords = new List<TimeRecord>();
+        }
+
+        public TaskInfoData ToStruct()
+        {
+            return new TaskInfoData(name, description);
         }
 
         /// <summary>
@@ -34,6 +55,19 @@ namespace TaskWatch.Model.Data
             }
 
             return base.Equals(obj);
+        }
+
+    }
+
+    public struct TaskInfoData
+    {
+        public string name;
+        public string description;
+
+        public TaskInfoData(string name = "", string description ="")
+        {
+            this.name = name;
+            this.description = description;
         }
     }
 }

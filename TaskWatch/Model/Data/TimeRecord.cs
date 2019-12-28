@@ -6,19 +6,22 @@ using System.Threading.Tasks;
 
 namespace TaskWatch.Model.Data
 {
-    public struct TimeRecord
+    public class TimeRecord
     {
+    // フィールド
         public DateTime startDateTime { get; private set; }
         public DateTime endDateTime { get; private set; }
         public TimeSpan requiredTime { get; private set; }
+        public string comment;
 
+    // コンストラクタ
 
         public TimeRecord(DateTime startDateTime)
         {
             this.startDateTime = startDateTime;
             this.endDateTime = startDateTime;
             this.requiredTime = TimeSpan.Zero;
-
+            this.comment = "";
         }
 
         public TimeRecord(DateTime startDateTime, DateTime endDateTime, TimeSpan requiredTime)
@@ -26,7 +29,33 @@ namespace TaskWatch.Model.Data
             this.startDateTime = startDateTime;
             this.endDateTime = endDateTime;
             this.requiredTime = requiredTime;
+            this.comment = "";
         }
+
+        public TimeRecord(DateTime startDateTime, DateTime endDateTime, TimeSpan requiredTime, string comment)
+        {
+            this.startDateTime = startDateTime;
+            this.endDateTime = endDateTime;
+            this.requiredTime = requiredTime;
+            this.comment = comment;
+        }
+
+        public TimeRecord(TimeRecordData timeRecordData)
+        {
+            this.startDateTime = timeRecordData.startDateTime;
+            this.endDateTime = timeRecordData.endDateTime;
+            this.requiredTime = timeRecordData.requiredTime;
+            if(timeRecordData.comment == null)
+            {
+                this.comment = "";
+            }
+            else
+            {
+                this.comment = timeRecordData.comment;
+            }
+        }
+
+    // パブリックメソッド
 
         public void Reset(DateTime startDateTime)
         {
@@ -34,6 +63,7 @@ namespace TaskWatch.Model.Data
             this.startDateTime = startDateTime;
             this.endDateTime = startDateTime;
             this.requiredTime = TimeSpan.Zero;
+            this.comment = "";
         }
 
         public void SetEndDateTime(DateTime endDateTime)
@@ -63,6 +93,35 @@ namespace TaskWatch.Model.Data
             }
 
             this.requiredTime = requiredTime;
+        }
+
+        public TimeRecordData ToStruct()
+        {
+            return new TimeRecordData(startDateTime, endDateTime, requiredTime, comment);
+        }
+    }
+
+    public struct TimeRecordData
+    {
+        public DateTime startDateTime;
+        public DateTime endDateTime;
+        public TimeSpan requiredTime;
+        public string comment;
+
+        public TimeRecordData(DateTime startDateTime)
+        {
+            this.startDateTime = startDateTime;
+            this.endDateTime = new DateTime(startDateTime.Ticks);
+            this.requiredTime = TimeSpan.Zero;
+            this.comment = "";
+        }
+
+        public TimeRecordData(DateTime startDateTime, DateTime endDateTime, TimeSpan requiredTime, string comment = "")
+        {
+            this.startDateTime = startDateTime;
+            this.endDateTime = endDateTime;
+            this.requiredTime = requiredTime;
+            this.comment = comment;
         }
     }
 }

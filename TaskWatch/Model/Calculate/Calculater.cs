@@ -8,47 +8,49 @@ using TaskWatch.Model.Data;
 
 namespace TaskWatch.Model.Calculate
 {
-    public  class Calculater
+    public static class Calculater
     {
-        public Dictionary<string, string> CalculateAll(IEnumerable<TimeRecord> timeRecords)
+        public static Dictionary<string, string> CalculateAll(List<TimeRecordData> timeRecordDatas)
         {
-            IEnumerable<TimeSpan> times = timeRecords.Select<TimeRecord, TimeSpan>(timeRecord => timeRecord.requiredTime);
+            List<TimeSpan> times = timeRecordDatas.Select<TimeRecordData, TimeSpan>(timeRecordData => timeRecordData.requiredTime).ToList();
+
             Dictionary<string, string> result = new Dictionary<string, string>();
 
-            result.Add("Times", MeasuredTimes(times).ToString());
-            result.Add("Total", Total(times).ToString());
-            result.Add("Average", Average(times).ToString());
-            result.Add("Max", Max(times).ToString());
-            result.Add("Min", Min(times).ToString());
-
+            if(times.Count() > 0)
+            {
+                result.Add("Times", MeasuredTimes(times).ToString());
+                result.Add("Total", Total(times).ToString());
+                result.Add("Average", Average(times).ToString());
+                result.Add("Max", Max(times).ToString());
+                result.Add("Min", Min(times).ToString());
+            }
             return result;
         }
 
-        public static int MeasuredTimes(IEnumerable<TimeSpan> times)
+        public static int MeasuredTimes(List<TimeSpan> times)
         {
             return times.Count();
         }
 
-        public static TimeSpan Average(IEnumerable<TimeSpan> times)
+        public static TimeSpan Average(List<TimeSpan> times)
         {
             return new TimeSpan(Total(times).Ticks / times.Count());
         }
 
-        public static TimeSpan Max(IEnumerable<TimeSpan> times)
+        public static TimeSpan Max(List<TimeSpan> times)
         {
             return times.Max();
         }
 
-        public static TimeSpan Min(IEnumerable<TimeSpan> times)
+        public static TimeSpan Min(List<TimeSpan> times)
         {
             return times.Min();
         }
 
-        public static TimeSpan Total(IEnumerable<TimeSpan> times)
+        public static TimeSpan Total(List<TimeSpan> times)
         {
             TimeSpan total = TimeSpan.Zero;
-            times.ToList()
-                .ForEach(time => total += time);
+            times.ForEach(time => total += time);
 
             return total;
         }

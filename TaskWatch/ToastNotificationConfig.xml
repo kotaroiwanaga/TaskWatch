@@ -5,11 +5,11 @@
     <ON>true</ON>
     <RunningElapseTimeSpan>
       <Hour>0</Hour>
-      <Minit>1</Minit>
+      <Minit>10</Minit>
     </RunningElapseTimeSpan>
     <StoppingElapseTimeSpan>
       <Hour>0</Hour>
-      <Minit>1</Minit>
+      <Minit>10</Minit>
     </StoppingElapseTimeSpan>
   </ToastNotification>
 </Config>

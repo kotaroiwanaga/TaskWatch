@@ -6,15 +6,36 @@ using System.Threading.Tasks;
 
 namespace TaskWatch.Model.Data
 {
-    public struct Category
+    public class Category
     {
         public string name;
         public string description;
+        public List<TaskInfo> taskInfos;
+
+        public Category(string name)
+        {
+            this.name = name;
+            this.description = "";
+            this.taskInfos = new List<TaskInfo>();
+        }
 
         public Category(string name, string description)
         {
             this.name = name;
             this.description = description;
+            this.taskInfos = new List<TaskInfo>();
+        }
+
+        public Category(CategoryData categoryData)
+        {
+            this.name = categoryData.name;
+            this.description = categoryData.description;
+            this.taskInfos = new List<TaskInfo>();
+        }
+
+        public CategoryData ToStruct()
+        {
+            return new CategoryData(name, description);
         }
 
         /// <summary>
@@ -31,6 +52,18 @@ namespace TaskWatch.Model.Data
             }
 
             return base.Equals(obj);
+        }
+    }
+
+    public struct CategoryData
+    {
+        public string name;
+        public string description;
+
+        public CategoryData(string name = "", string description = "")
+        {
+            this.name = name;
+            this.description = description;
         }
     }
 }

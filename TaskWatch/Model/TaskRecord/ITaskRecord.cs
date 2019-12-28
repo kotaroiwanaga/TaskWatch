@@ -10,6 +10,6 @@ namespace TaskWatch.Model.TaskRecord
 {
     interface ITaskRecord
     {
-        void Register(Category category, TaskInfo taskInfo, TimeRecord timeRecord);
+        void Register(CategoryData categoryData, TaskInfoData taskInfoData, TimeRecordData timeRecordData);
     }
 }

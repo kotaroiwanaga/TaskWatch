@@ -17,24 +17,26 @@ namespace TaskWatch.Model.TaskRecord
             this.temporarySavedTime = new Dictionary<Tuple<Category, TaskInfo>, TimeRecord>();
         }
 
+
         /// <summary>
         /// category, taskInfo をkeyとしたtimreRecordを格納
         /// </summary>
-        /// <param name="category"></param>
-        /// <param name="taskInfo"></param>
-        /// <param name="timeRecord"></param>
-        public void Register(Category category, TaskInfo taskInfo, TimeRecord timeRecord)
+        /// <param name="categoryData"></param>
+        /// <param name="taskInfoData"></param>
+        /// <param name="timeRecordData"></param>
+        public void Register(CategoryData categoryData, TaskInfoData taskInfoData, TimeRecordData timeRecordData)
         {
-            Tuple<Category, TaskInfo> key = Tuple.Create<Category, TaskInfo>(category, taskInfo);
+            // TODO: 中身の実装
+            //Tuple<Category, TaskInfo> key = Tuple.Create<Category, TaskInfo>(category, taskInfo);
 
-            if(temporarySavedTime.ContainsKey(key))
-            {
-                temporarySavedTime[key] = timeRecord;
-            }
-            else
-            {
-                temporarySavedTime.Add(key, timeRecord);
-            }
+            //if(temporarySavedTime.ContainsKey(key))
+            //{
+            //    temporarySavedTime[key] = timeRecord;
+            //}
+            //else
+            //{
+            //    temporarySavedTime.Add(key, timeRecord);
+            //}
         }
 
         /// <summary>
@@ -52,10 +54,7 @@ namespace TaskWatch.Model.TaskRecord
             {
                 return timeRecord;
             }
-            else
-            {
                 return new TimeRecord(DateTime.Now);
-            }
         }
     }
 }
