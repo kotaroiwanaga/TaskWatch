@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.TaskTimer = new System.Windows.Forms.Timer(this.components);
             this.TaskInfo_Panel = new System.Windows.Forms.Panel();
             this.TotalValue_Label = new System.Windows.Forms.Label();
@@ -298,6 +299,7 @@
             this.Controls.Add(this.Setting_Panel);
             this.Controls.Add(this.TaskInfo_Panel);
             this.Controls.Add(this.Message_TableLayoutPanel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.Text = "TaskWatch";
             this.TaskInfo_Panel.ResumeLayout(false);
